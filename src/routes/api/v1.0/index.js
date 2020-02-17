@@ -1,0 +1,13 @@
+const express = require('express');
+
+const router = express.Router();
+
+const userRouter = require('./user');
+const productRouter = require('./product');
+const cartItemRouter = require('./cartItem');
+
+router.use('/users', userRouter);
+router.use('/products', productRouter);
+router.use('/cartItems', cartItemRouter);
+
+module.exports = router;
