@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const CartItem = sequelize.define('CartItem', {
-    cartItemId: DataTypes.INTEGER,
     productId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
@@ -12,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       foregnKey: 'productId',
       as: 'product',
     });
-    CartItem.hasOne(models.User, {
+    CartItem.belongsTo(models.User, {
       foregnKey: 'userId',
-      as: 'user',
+      as: 'owner',
     });
   };
   return CartItem;
