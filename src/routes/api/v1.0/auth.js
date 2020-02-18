@@ -6,6 +6,7 @@ const authService = require('../../../services/auth.service');
 
 // Load Input Validation
 const validationRegisterInput = require('../../../validator/register');
+const validationLoginInput = require('../../../validator/login');
 
 router
 
@@ -24,7 +25,8 @@ router
       const { errors, isValid } = validationRegisterInput(req.body);
       // check validation
       if (!isValid) {
-        return res.status(400).json({ status: 'failed', data: errors });
+        res.status(400).json({ status: 'failed', data: errors });
+        return;
       }
 
       const newUser = req.body;
@@ -41,6 +43,13 @@ router
 // @access  Public
   .post('/login', async (req, res) => {
     try {
+      const { errors, isValid } = validationLoginInput(req.body);
+      // check validation
+      if (!isValid) {
+        res.status(400).json({ status: 'failed', data: errors });
+        return;
+      }
+
       const { email, password } = req.body;
       const result = await authService.login(email, password);
       const { statusCode, toReturn } = result;

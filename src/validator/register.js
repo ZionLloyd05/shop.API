@@ -32,7 +32,7 @@ module.exports = function validateRegisterInput(data) {
   if (validator.isEmpty(userData.email)) {
     errors.email = 'Email cannot be empty';
   }
-  if (validator.isEmail(userData.lastname)) {
+  if (validator.isEmail(userData.email)) {
     errors.email = 'Email is invalid';
   }
 
@@ -48,7 +48,7 @@ module.exports = function validateRegisterInput(data) {
   if (validator.isEmpty(userData.cpassword)) {
     errors.confirmPassword = 'Confirm Password cannot be empty';
   }
-  if (validator.equals(userData.cpassword, userData.password)) {
+  if (!validator.equals(userData.cpassword, userData.password)) {
     errors.confirmPassword = 'Password must match';
   }
 
