@@ -22,6 +22,9 @@ exports.envVariables = {
   password: process.env.PASSWORD,
   dbname: process.env.DBNAME,
   host: process.env.HOST,
-  port: process.env.PORT,
+  port: process.env.DBPORT,
   testDbname: process.env.TESTDBNAME,
+  cloudname: process.env.CLOUD_NAME,
+  apikey: process.env.API_KEY,
+  apisecret: process.env.API_SECRET,
 };

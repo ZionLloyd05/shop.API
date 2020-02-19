@@ -6,6 +6,11 @@ const passport = require('passport');
 
 const bodyParser = require('body-parser');
 
+// import environmental variables from our variables.env file
+require('dotenv').config({
+  path: 'variables.env',
+});
+
 const appRouter = require('./src/routes/api');
 
 const app = express();
@@ -19,6 +24,7 @@ app.use(bodyParser.json());
 
 // ==> passprt config
 app.use(passport.initialize());
+
 
 require('./src/helpers/passport')(passport);
 //

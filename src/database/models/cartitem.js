@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   CartItem.associate = (models) => {
     // associations can be defined here
-    CartItem.hasOne(models.Product, {
+    CartItem.belongsTo(models.Product, {
       foregnKey: 'productId',
       as: 'product',
     });

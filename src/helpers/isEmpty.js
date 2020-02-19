@@ -1,3 +1,9 @@
+
+/**
+ * Simple helper method that check for null
+ * value of any data type
+ * @param {*} value
+ */
 const IsEmpty = (value) => (
   value === undefined
         || value === null

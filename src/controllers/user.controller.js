@@ -21,11 +21,16 @@ exports.createNewUser = async (userToCreate) => {
   const newUser = await models.User.create(newUserObj);
   return newUser;
 };
-  
+
 exports.getUserById = async (userId) => {
   const user = await models.User.findOne({
-    where: { id: userId }
-  })
+    where: { id: userId },
+  });
 
   return user;
-}
+};
+
+exports.getUsers = async () => {
+  const users = await models.User.findAll({});
+  return users;
+};

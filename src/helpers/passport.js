@@ -9,18 +9,17 @@ opts.secretOrKey = envVariables.secretOrKey;
 
 module.exports = (passport) => {
   passport.use(new JwtStrategy(opts, async (jwtPayload, done) => {
-    console.log(jwtPayload);
     try {
       const user = await userController.getUserById(jwtPayload.id);
-      console.log(user);
-      if(!user){
-        return done(null, false);
+      if (!user) {
+        done(null, false);
+        return;
       }
 
-      return done(null, user);
+      done(null, user);
+      return;
     } catch (error) {
       console.log(error);
     }
   }));
-}
-;
+};
