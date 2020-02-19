@@ -6,13 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.TEXT,
     isAdmin: DataTypes.BOOLEAN,
   }, {});
-  User.associate = (models) => {
+  User.associate = () => {
     // associations can be defined here
-    User.hasMany(models.CartItem, {
-      foriegnKey: 'userId',
-      as: 'cartItems',
-      onDelete: 'CASCADE',
-    });
+    // User.hasMany(models.CartItem, {
+    //   foriegnKey: 'userId',
+    //   as: 'cartItems',
+    //   onDelete: 'CASCADE',
+    // });
   };
   return User;
 };

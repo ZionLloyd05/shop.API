@@ -39,9 +39,30 @@ exports.getAllProducts = async () => {
   return result;
 };
 
+exports.getProduct = async (productId) => {
+  const productReturn = await productController.getProductById(productId);
+
+  if (typeof productReturn === 'string') {
+    const error = productReturn;
+    const statusCode = 404;
+    return {
+      toReturn: { status: 'error', data: error },
+      statusCode,
+    };
+  }
+
+  const statusCode = 200;
+  const result = {
+    toReturn: { status: 'success', data: productReturn },
+    statusCode,
+  };
+  return result;
+};
+
 exports.updateProduct = async (productFromUser, file, productId) => {
-  // eslint-disable-next-line max-len
-  const updatedProductReturn = await productController.updateProduct(productFromUser, file, productId);
+  const updatedProductReturn = await productController.updateProduct(
+    productFromUser, file, productId,
+  );
 
   if (typeof updatedProductReturn === 'string') {
     const error = updatedProductReturn;

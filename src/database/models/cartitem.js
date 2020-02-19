@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     CartItem.belongsTo(models.User, {
       foregnKey: 'userId',
-      as: 'owner',
+      as: 'user',
     });
   };
   return CartItem;

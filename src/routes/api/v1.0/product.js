@@ -48,17 +48,23 @@ router
 // @route   GET api/v1.0/products
 // @desc    Get all products
 // @access  Private
-/**
- * @swagger
- * /products:
- *  get:
- *    description: Get all products
- *    responses:
- *      '200'
- */
   .get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const result = await productService.getAllProducts();
+      const { statusCode, toReturn } = result;
+      res.status(statusCode).json(toReturn);
+    } catch (error) {
+      res.status(500).json({ status: 'error', data: error });
+    }
+  })
+
+// @route   GET api/v1.0/products/{id}
+// @desc    Get a product
+// @access  Private
+  .get('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+      const productId = req.params.id;
+      const result = await productService.getProduct(productId);
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {

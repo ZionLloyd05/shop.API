@@ -41,6 +41,14 @@ exports.getProducts = async () => {
   return products;
 };
 
+exports.getProductById = async (productId) => {
+  const product = await models.Product.findOne({
+    where: { id: productId },
+  });
+
+  return product;
+};
+
 exports.updateProduct = async (productFromUser, file, productId) => {
   const productUpdateInput = productFromUser;
 
@@ -63,9 +71,7 @@ exports.updateProduct = async (productFromUser, file, productId) => {
 
 
     if (updated) {
-      const updatedProduct = await models.Product.findOne({
-        where: { id: productId },
-      });
+      const updatedProduct = await this.getProductById(productId);
 
       return updatedProduct;
     }
@@ -77,11 +83,15 @@ exports.updateProduct = async (productFromUser, file, productId) => {
   }
 };
 
+/**
+ * By my design, I feel product shouldn't be deleted,
+ * at best we could only make it out of stock, for
+ * record sake and more importantly because of cartitems that
+ * has such product as a foriegn key.
+ */
 exports.removeProduct = async (productId) => {
   console.log(productId);
-  const deleted = await models.Product.destroy({
-    where: { id: productId },
-  });
+  const deleted = await this.updateProduct({ inStock: false }, null, productId);
 
   if (deleted) {
     return true;
