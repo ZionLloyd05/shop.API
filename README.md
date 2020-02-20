@@ -1,70 +1,77 @@
-# module-name  
+# Project Title
 
-**Badges** 
-
-Optional badges such as npm version, test and build coverage, and so on.
-
-**Summary** 
-
-One- or two-sentence description of what the module does.  
+Mock Shop API
 
 ## Overview
 
-Optionally, include a section of one or two paragraphs with more high-level 
-information on what the module does, what problems it solves, why one would 
-use it and how.  Don't just repeat what's in the summary.
+A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and Postgres for data store
 
 ## Installation
 
-```
-$ npm install module-name
-```
+1. Clone repository.
 
-## Basic use
+2. CD into the application folder.
 
-General description of how to use the module with basic example.  
+3. Run $ npm install , to install neccessary dependencies.
 
-## API 
+4. Run $ npm run server :)
 
-Full API documentation.  
+## API
 
-## Examples
+Brief API documentation.  
 
-Additional examples here.
+1. Resource Name : Auth
+    Path: POST /api/v1.0/auth/login
+    Description: Use to create auth token for users
+    Access: Public
+
+    Path: POST /api/v1.0/auth/register
+    Description: Use to register a user
+    Access: Public
+
+2. Resource Name : User
+    Path: GET /api/v1.0/users
+    Description: Return all users
+    Access: Private
+
+    Path: GET /api/v1.0/users/{id}
+    Description: Return a single user
+    Access: Private
+
+3. Resource Name : Product
+    Path: GET /api/v1.0/products
+    Description: Return all products
+    Access: Private
+
+    Path: GET /api/v1.0/products/{id}
+    Description: Return a single product
+    Access: Private
+
+    Path: POST /api/v1.0/products
+    Description: Create a product
+    Access: Private
+
+    Path: PUT /api/v1.0/products/{id}
+    Description: Update a product
+    Access: Private
+
+    Path: DELETE /api/v1.0/products/{id}
+    Description: Set product to out of stock
+    Access: Private
+
+4. Resource Name : CartItem
+    Path: GET /api/v1.0/cartItems
+    Description: Return user cart
+    Access: Private
+
+    Path: POST /api/v1.0/cartItems
+    Description: Adding product to cart
+    Access: Private
+
+    Path: DELETE /api/v1.0/cartItems/{productId}
+    Description: Removing product from user's cart
+    Access: Private
 
 ## Tests
 
-What tests are included and how to run them. 
-
-## Contributing
-
-This project welcomes contributions from the community. Contributions are
-accepted using GitHub pull requests; for more information, see 
-[GitHub documentation - Creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
-
-For a good pull request, we ask you provide the following:
-
-1. Include a clear description of your pull request in the description
-   with the basic "what" and "why"s for the request.
-2. The tests should pass as best as you can. GitHub will automatically run
-   the tests as well, to act as a safety net.
-3. The pull request should include tests for the change. A new feature should
-   have tests for the new feature and bug fixes should include a test that fails
-   without the corresponding code change and passes after they are applied.
-   The command `npm run test-cov` will generate a `coverage/` folder that
-   contains HTML pages of the code coverage, to better understand if everything
-   you're adding is being tested.
-4. If the pull request is a new feature, please include appropriate documentation 
-   in the `README.md` file as well.
-5. To help ensure that your code is similar in style to the existing code,
-   run the command `npm run lint` and fix any displayed issues.
-
-## Contributors
-
-Names of module "owners" (lead developers) and other developers who 
-have contributed.
-
-## License
-
-Link to the license, with a short description of what it is, 
-e.g. "MIT" or whatever. 
+$ npm test
