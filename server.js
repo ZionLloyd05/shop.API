@@ -6,6 +6,10 @@ const passport = require('passport');
 
 const bodyParser = require('body-parser');
 
+const swaggerJsDoc = require('swagger-jsdoc');
+
+const swaggerUI = require('swagger-ui-express');
+
 // import environmental variables from our variables.env file
 require('dotenv').config({
   path: 'variables.env',
@@ -24,6 +28,28 @@ app.use(bodyParser.json());
 
 // ==> passprt config
 app.use(passport.initialize());
+
+// ==> Swagger Config
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'Mock Shop API',
+      description: 'Mock Shop API Documentation',
+      version: '1.0',
+      contact: {
+        name: 'Alagbala Damilola',
+        email: 'alagbaladamilola@gmail.com',
+      },
+      servers: ['http://localhost:5000'],
+    },
+  },
+
+  apis: ['./src/routes/api/v1.0/*js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 
 require('./src/helpers/passport')(passport);

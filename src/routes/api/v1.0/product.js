@@ -41,13 +41,34 @@ router
 // @route   GET api/v1.0/products/test
 // @desc    Tests product route
 // @access  Public
-  .get('/test', (req, res) => {
+  .get('/ping', (req, res) => {
     res.json({ status: 'success', data: 'nil' });
   })
 
 // @route   GET api/v1.0/products
 // @desc    Get all products
 // @access  Private
+/**
+ * @swagger
+ * /api/v1.0/products:
+ *  get:
+ *    description: Get all product
+ *    produces:
+ *      application/json
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *    responses:
+ *      '200':
+ *        description: All products was returned
+ *      '400':
+ *        description: Invalid data supplied
+ *      '401':
+ *        description: Unauthorized user
+ *      '500':
+ *        description: Internal server error
+ */
   .get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const result = await productService.getAllProducts();
@@ -61,6 +82,27 @@ router
 // @route   GET api/v1.0/products/{id}
 // @desc    Get a product
 // @access  Private
+/**
+ * @swagger
+ * /api/v1.0/products/{id}:
+ *  get:
+ *    description: Get a product by id
+ *    produces:
+ *      application/json
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *    responses:
+ *      '200':
+ *        description: Product was returned
+ *      '400':
+ *        description: Invalid data supplied
+ *      '401':
+ *        description: Unauthorized user
+ *      '500':
+ *        description: Internal server error
+ */
   .get('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const productId = req.params.id;
@@ -75,6 +117,58 @@ router
 // @route   POST api/v1.0/products
 // @desc    Post a product
 // @access  Private
+/**
+ * @swagger
+ * /api/v1.0/products:
+ *  post:
+ *    description: Create a product
+ *    produces:
+ *      application/json
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *    parameters:
+ *      - in: body
+ *        name: name
+ *        description: Name of product
+ *        schema:
+ *          type: object
+ *          required:
+ *            - name
+ *            - description
+ *            - category
+ *            - price
+ *            - inStock
+ *          properties:
+ *            name:
+ *              type: string
+ *              description: Product name
+ *            image:
+ *              type: file
+ *              description: Product image
+ *            description:
+ *              type: string
+ *              description: Product description
+ *            category:
+ *              type: string
+ *              description: Product category
+ *            price:
+ *              type: float
+ *              description: Price of product
+ *            inStock:
+ *              type: boolean
+ *              description: Describes product current availability
+ *    responses:
+ *      '201':
+ *        description: Product was created
+ *      '400':
+ *        description: Invalid data supplied
+ *      '401':
+ *        description: Unauthorized user
+ *      '500':
+ *        description: Internal server error
+ */
   .post('/', passport.authenticate('jwt', { session: false }), upload.single('image'), async (req, res) => {
     try {
       const { errors, isValid } = validationProductInput(req.body);
@@ -96,6 +190,54 @@ router
 // @route   PUT api/v1.0/products/{id}
 // @desc    Update a product
 // @access  Private
+/**
+ * @swagger
+ * /api/v1.0/products/{id}:
+ *  put:
+ *    description: Update existing product
+ *    produces:
+ *      application/json
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *    parameters:
+ *      - in: body
+ *        name: name
+ *        description: Name of product
+ *        schema:
+ *          type: object
+ *          properties:
+ *            name:
+ *              type: string
+ *              description: Product name
+ *            image:
+ *              type: file
+ *              description: Product image
+ *            description:
+ *              type: string
+ *              description: Product description
+ *            category:
+ *              type: string
+ *              description: Product category
+ *            price:
+ *              type: float
+ *              description: Price of product
+ *            inStock:
+ *              type: boolean
+ *              description: Describes product current availability
+ *    responses:
+ *      '200':
+ *        description: Product was updated successfully
+ *      '400':
+ *        description: Invalid data supplied
+ *      '404':
+ *        description: Product not found
+ *      '401':
+ *        description: Unauthorized user
+ *      '500':
+ *        description: Internal server error
+ */
   .put('/:id', passport.authenticate('jwt', { session: false }), upload.single('image'), async (req, res) => {
     try {
       const { errors, isValid } = validationProductInput(req.body);
@@ -116,8 +258,31 @@ router
   })
 
 // @route   DELETE api/v1.0/products/{id}
-// @desc    Delete a product
+// @desc    Sets product to out of stock
 // @access  Private
+/**
+ * @swagger
+ * /api/v1.0/products/{id}:
+ *  delete:
+ *    description: Sets product to out of stock
+ *    produces:
+ *      application/json
+ *    securitySchemes:
+ *      BearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *    responses:
+ *      '200':
+ *        description: Product was set to out of stock
+ *      '400':
+ *        description: Invalid data supplied
+ *      '401':
+ *        description: Unauthorized user
+ *      '404':
+ *        description: Product not found
+ *      '500':
+ *        description: Internal server error
+ */
   .delete('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const productId = req.params.id;
