@@ -71,5 +71,11 @@ app.get('/api/healthcheck', (req, res) => res.send('Healthy'));
 app.use('/api', appRouter);
 
 const port = process.env.PORT || 5000;
+// const envConfigs = require('./src/database/config/config');
 
+// const env = process.env.NODE_ENV;
+// const config = envConfigs.development;
+// console.log(config);
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+module.exports = app;

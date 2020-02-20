@@ -9,7 +9,7 @@ exports.register = async (userToCreate) => {
   if (user) {
     const statusCode = 409;
     const result = {
-      toReturn: { status: 'failed', data: 'User already exist' },
+      toReturn: { status: 'error', data: 'User already exist' },
       statusCode,
     };
     return result;
@@ -30,7 +30,7 @@ exports.login = async (email, password) => {
   if (user === null) {
     const statusCode = 404;
     const result = {
-      toReturn: { status: 'failed', data: 'User does not exist' },
+      toReturn: { status: 'error', data: 'User does not exist' },
       statusCode,
     };
     return result;
@@ -42,7 +42,7 @@ exports.login = async (email, password) => {
     console.log('it here');
     const statusCode = 404;
     const result = {
-      toReturn: { status: 'failed', data: 'User does not exist' },
+      toReturn: { status: 'error', data: 'User does not exist' },
       statusCode,
     };
     return result;

@@ -11,8 +11,14 @@ module.exports = function validationProductInput(data) {
   productData.name = !IsEmpty(productData.name) ? productData.name : '';
   productData.description = !IsEmpty(productData.description) ? productData.description : '';
   productData.category = !IsEmpty(productData.category) ? productData.category : '';
-  productData.price = !IsEmpty(productData.price) ? productData.price : '';
+  productData.price = !IsEmpty(productData.price) ? productData.price : 0;
   productData.inStock = !IsEmpty(productData.inStock) ? productData.inStock : '';
+
+  if (productData.inStock === 'true') productData.inStock = true;
+
+  if (productData.inStock === 'false') productData.inStock = false;
+
+  console.log(productData);
 
   // Name Validations
   if (!validator.isLength(productData.name, { min: 3, max: 40 })) {
@@ -39,19 +45,19 @@ module.exports = function validationProductInput(data) {
   }
 
   // Price Validations
-  if (!validator.isCurrency(productData.price)) {
+  // if (!validator.isCurrency(productData.price)) {
+  //   errors.price = 'Invalid price';
+  // }
+  if (productData.price <= 0) {
     errors.price = 'Invalid price';
-  }
-  if (validator.isEmpty(productData.price)) {
-    errors.price = 'Price cannot be empty';
   }
 
   // InStock Validations
-  if ((!validator.equals(productData.inStock, 'true')) || (!validator.equals(productData.inStock, 'false'))
-  ) {
-    errors.inStock = 'Invalid instock value';
-  }
-  if (validator.isEmpty(productData.inStock)) {
+  // if ((!validator.equals(productData.inStock, 'true')) || (!validator.equals(productData.inStock, 'false'))
+  // ) {
+  //   errors.inStock = 'Invalid instock value';
+  // }
+  if ((productData.inStock === '')) {
     errors.inStock = 'InStock cannot be empty';
   }
 

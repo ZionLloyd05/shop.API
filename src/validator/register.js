@@ -32,7 +32,7 @@ module.exports = function validateRegisterInput(data) {
   if (validator.isEmpty(userData.email)) {
     errors.email = 'Email cannot be empty';
   }
-  if (validator.isEmail(userData.email)) {
+  if (!validator.isEmail(userData.email)) {
     errors.email = 'Email is invalid';
   }
 
@@ -40,7 +40,7 @@ module.exports = function validateRegisterInput(data) {
   if (validator.isEmpty(userData.password)) {
     errors.password = 'Password cannot be empty';
   }
-  if (validator.isLength(userData.password, { min: 6, max: 30 })) {
+  if (!validator.isLength(userData.password, { min: 6, max: 30 })) {
     errors.password = 'Password must be atleast 6 characters';
   }
 

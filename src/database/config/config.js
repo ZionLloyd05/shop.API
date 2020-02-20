@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { envVariables } = require('../../helpers');
 
 const {

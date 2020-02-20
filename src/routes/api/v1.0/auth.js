@@ -68,7 +68,7 @@ router
       const { errors, isValid } = validationRegisterInput(req.body);
       // check validation
       if (!isValid) {
-        res.status(400).json({ status: 'failed', data: errors });
+        res.status(400).json({ status: 'error', data: errors });
         return;
       }
 
@@ -77,7 +77,7 @@ router
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {
-      res.status(500).json({ status: 'failed', data: error });
+      res.status(500).json({ status: 'error', data: error });
     }
   })
 
@@ -122,7 +122,7 @@ router
       const { errors, isValid } = validationLoginInput(req.body);
       // check validation
       if (!isValid) {
-        res.status(400).json({ status: 'failed', data: errors });
+        res.status(400).json({ status: 'error', data: errors });
         return;
       }
 
@@ -131,7 +131,7 @@ router
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {
-      res.status(500).json({ status: 'failed', data: error });
+      res.status(500).json({ status: 'error', data: error });
     }
   });
 

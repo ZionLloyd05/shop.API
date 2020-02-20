@@ -11,11 +11,11 @@ A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and
 2. CD into the application folder.
 
 ```bash
-3. Run $ npm install.
+3. $ npm install.
 ```
 
 ```bash
-4. Run $ npm run server :)
+4. $ npm run server :)
 ```
 
 ## API

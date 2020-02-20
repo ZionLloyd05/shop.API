@@ -20,14 +20,17 @@ exports.createProduct = async (productToCreate, file) => {
   const newProductInput = productToCreate;
 
   try {
-    const result = await cloudinary.uploader.upload(file.path);
-    if (!result || result.name === 'Error') {
-      const error = result.message;
-      console.log(error);
-      return 'Image upload provider server error';
+    if (file) {
+      const result = await cloudinary.uploader.upload(file.path);
+      if (!result || result.name === 'Error') {
+        const error = result.message;
+        console.log(error);
+        return 'Image upload provider server error';
+      }
+
+      newProductInput.imageUrl = result.url;
     }
 
-    newProductInput.imageUrl = result.url;
     const product = await models.Product.create(newProductInput);
     return product;
   } catch (error) {
@@ -42,11 +45,20 @@ exports.getProducts = async () => {
 };
 
 exports.getProductById = async (productId) => {
-  const product = await models.Product.findOne({
-    where: { id: productId },
-  });
+  try {
+    const product = await models.Product.findOne({
+      where: { id: productId },
+    });
 
-  return product;
+    if (!product) {
+      return 'Product not found';
+    }
+
+    return product;
+  } catch (error) {
+    console.log(error);
+    return 'Something went wrong with the server and could not find product';
+  }
 };
 
 exports.updateProduct = async (productFromUser, file, productId) => {

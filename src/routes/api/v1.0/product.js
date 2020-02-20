@@ -174,7 +174,7 @@ router
       const { errors, isValid } = validationProductInput(req.body);
       // check validation
       if (!isValid) {
-        res.status(400).json({ status: 'failed', data: errors });
+        res.status(400).json({ status: 'error', data: errors });
         return;
       }
 
@@ -243,7 +243,7 @@ router
       const { errors, isValid } = validationProductInput(req.body);
       // check validation
       if (!isValid) {
-        res.status(400).json({ status: 'failed', data: errors });
+        res.status(400).json({ status: 'error', data: errors });
         return;
       }
 

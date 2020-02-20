@@ -1,4 +1,8 @@
 const bcrypt = require('bcryptjs');
+// import environmental variables from our variables.env file
+require('dotenv').config({
+  path: '../../variables.env',
+});
 
 exports.hashString = async (str) => {
   const salt = await bcrypt.genSalt(10);
@@ -27,4 +31,5 @@ exports.envVariables = {
   cloudname: process.env.CLOUD_NAME,
   apikey: process.env.API_KEY,
   apisecret: process.env.API_SECRET,
+  node_env: process.env.NODE_ENV,
 };
