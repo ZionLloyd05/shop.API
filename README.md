@@ -76,5 +76,5 @@ Brief API documentation.
 ## Tests
 
 ```bash
-$ npm test
+$ npm run test
 ```

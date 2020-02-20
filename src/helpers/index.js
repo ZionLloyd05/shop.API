@@ -19,7 +19,7 @@ exports.compareHash = async (str, hashString) => {
 
 exports.envVariables = {
   secretOrKey: process.env.SECRETORKEY,
-  devDB: process.env.DEV_DATABASE_URL,
+  devDB: process.env.DATABASE_URL,
   testDB: process.env.TEST_DATABASE_URL,
   dialect: process.env.DIALECT,
   username: process.env.USERNAME,
