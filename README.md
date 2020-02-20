@@ -15,10 +15,12 @@ A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and
 ```
 
 ```bash
-4. $ npm run server :)
+4. $ npm run server 
 ```
 
 ## API
+
+### Check Full Docs here <http://mockshopapi.herokuapp.com/api-docs/>
 
 Brief API documentation.  
 
