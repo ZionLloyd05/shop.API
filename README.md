@@ -1,10 +1,12 @@
 # Mock Shop API
 
+## Production link <http://mockshopapi.herokuapp.com/> </h2>
+
 ## Overview
 
 A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and Postgres for data store
 
-## Installation
+## Local Installation
 
 1. Clone repository.
 
@@ -15,7 +17,7 @@ A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and
 ```
 
 ```bash
-4. $ npm run server 
+4. $ npm run server
 ```
 
 ## API
