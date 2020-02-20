@@ -21,6 +21,7 @@ exports.envVariables = {
   secretOrKey: process.env.SECRETORKEY,
   devDB: process.env.DATABASE_URL,
   testDB: process.env.TEST_DATABASE_URL,
+  prodDB: process.env.DATABASE_URL,
   dialect: process.env.DIALECT,
   username: process.env.USERNAME,
   password: process.env.PASSWORD,

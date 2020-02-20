@@ -32,7 +32,13 @@ module.exports = {
     port,
   },
   production: {
-    url: '',
-    dialect: '',
+    url: prodDB,
+    dialect,
+    username,
+    password,
+    database: dbname,
+    host,
+    port,
+  },
   },
 };
