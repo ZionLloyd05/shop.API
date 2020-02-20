@@ -10,6 +10,7 @@ const {
   dbname,
   host,
   port,
+  prodDB,
 } = envVariables;
 
 module.exports = {
@@ -39,6 +40,5 @@ module.exports = {
     database: dbname,
     host,
     port,
-  },
   },
 };
