@@ -1,7 +1,19 @@
 
 const productController = require('../controllers/product.controller');
 
-exports.createNewProduct = async (productToCreate, file) => {
+const { isAuthorized } = require('../services/auth.service');
+
+exports.createNewProduct = async (productToCreate, file, user) => {
+  if (!isAuthorized(user)) {
+    console.log('authorize msg');
+    console.log('not admin');
+    const statusCode = 401;
+    return {
+      toReturn: { status: 'error', data: 'UnAuthorized' },
+      statusCode,
+    };
+  }
+  console.log('admin');
   const result = await productController.createProduct(productToCreate, file);
 
   if (typeof result === 'string') {
@@ -59,7 +71,14 @@ exports.getProduct = async (productId) => {
   return result;
 };
 
-exports.updateProduct = async (productFromUser, file, productId) => {
+exports.updateProduct = async (productFromUser, file, productId, user) => {
+  if (!isAuthorized(user)) {
+    const statusCode = 401;
+    return {
+      toReturn: { status: 'error', data: 'UnAuthorized' },
+      statusCode,
+    };
+  }
   const updatedProductReturn = await productController.updateProduct(
     productFromUser, file, productId,
   );
@@ -81,7 +100,15 @@ exports.updateProduct = async (productFromUser, file, productId) => {
   return result;
 };
 
-exports.removeProduct = async (productId) => {
+exports.removeProduct = async (productId, user) => {
+  if (!isAuthorized(user)) {
+    const statusCode = 401;
+    return {
+      toReturn: { status: 'error', data: 'UnAuthorized' },
+      statusCode,
+    };
+  }
+
   try {
     const result = await productController.removeProduct(productId);
 

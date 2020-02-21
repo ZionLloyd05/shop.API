@@ -124,28 +124,29 @@ describe('POST /api/v1.0/products', () => {
       .catch((err) => done(err));
   });
 
-  // it('should create a new product', (done) => {
-  //   request(app)
-  //     .post('/api/v1.0/products')
-  //     .set('Authorization', authToken)
-  //     .send({
-  //       name: 'test product',
-  //       description: 'Exclusive new test product by Hello World Inc',
-  //       category: 'service',
-  //       price: 35000,
-  //       imageUrl: '',
-  //       inStock: true,
-  //     })
-  //     .then((res) => {
-  //       const { body } = res;
-  //       expect(res.status).to.equal(201);
-  //       expect(res.type).to.equal('application/json');
-  //       expect(body).to.include.keys('status', 'data');
-  //       done();
-  //     })
-  //     .catch((err) => done(err));
-  // });
+  it('should create a new product', (done) => {
+    request(app)
+      .post('/api/v1.0/products')
+      .set('Authorization', authToken)
+      .send({
+        name: 'test product',
+        description: 'Exclusive new test product by Hello World Inc',
+        category: 'service',
+        price: 35000,
+        imageUrl: '',
+        inStock: true,
+      })
+      .then((res) => {
+        const { body } = res;
+        expect(res.status).to.equal(201);
+        expect(res.type).to.equal('application/json');
+        expect(body).to.include.keys('status', 'data');
+        done();
+      })
+      .catch((err) => done(err));
+  });
 });
+
 
 describe('PUT /api/v1.0/products/{id}', () => {
   let authToken = '';

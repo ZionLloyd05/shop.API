@@ -46,10 +46,10 @@ module.exports = function validateRegisterInput(data) {
 
   // Confirm Password Validations
   if (validator.isEmpty(userData.cpassword)) {
-    errors.confirmPassword = 'Confirm Password cannot be empty';
+    errors.cpassword = 'Confirm Password cannot be empty';
   }
   if (!validator.equals(userData.cpassword, userData.password)) {
-    errors.confirmPassword = 'Password must match';
+    errors.cpassword = 'Password must match';
   }
 
   return {

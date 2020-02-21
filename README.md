@@ -17,7 +17,15 @@ A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and
 ```
 
 ```bash
-4. $ npm run server
+4. $ cd ./src/database
+```
+
+```bash
+5. $ sequelize db:migrate
+```
+
+```bash
+6. $ npm run server
 ```
 
 ## API

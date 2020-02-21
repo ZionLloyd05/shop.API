@@ -15,7 +15,7 @@ exports.createNewUser = async (userToCreate) => {
     lastname,
     email,
     password: hashedPassword,
-    isAdmin: true,
+    isAdmin: false,
   };
 
   const newUser = await models.User.create(newUserObj);
@@ -23,11 +23,20 @@ exports.createNewUser = async (userToCreate) => {
 };
 
 exports.getUserById = async (userId) => {
-  const user = await models.User.findOne({
-    where: { id: userId },
-  });
+  try {
+    const user = await models.User.findOne({
+      where: { id: userId },
+    });
 
-  return user;
+    if (!user) {
+      return 'User not found';
+    }
+
+    return user;
+  } catch (error) {
+    console.log(error);
+    return 'Something went wrong with the server and could not find user';
+  }
 };
 
 exports.getUsers = async () => {

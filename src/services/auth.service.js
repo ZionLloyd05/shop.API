@@ -29,8 +29,12 @@ exports.login = async (email, password) => {
 
   if (user === null) {
     const statusCode = 404;
+
+    // For front-end
+    const errors = { email: 'User not found' };
+
     const result = {
-      toReturn: { status: 'error', data: 'User does not exist' },
+      toReturn: { status: 'error', data: errors },
       statusCode,
     };
     return result;
@@ -54,4 +58,11 @@ exports.login = async (email, password) => {
     statusCode,
   };
   return result;
+};
+
+exports.isAuthorized = (user) => {
+  if (user.isAdmin) {
+    return true;
+  }
+  return false;
 };

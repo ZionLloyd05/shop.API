@@ -170,6 +170,7 @@ router
  *        description: Internal server error
  */
   .post('/', passport.authenticate('jwt', { session: false }), upload.single('image'), async (req, res) => {
+    // console.log(req.user.isAdmin);
     try {
       const { errors, isValid } = validationProductInput(req.body);
       // check validation
@@ -179,7 +180,7 @@ router
       }
 
       const newProduct = req.body;
-      const result = await productService.createNewProduct(newProduct, req.file);
+      const result = await productService.createNewProduct(newProduct, req.file, req.user);
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {
@@ -249,7 +250,9 @@ router
 
       const productFromUser = req.body;
       const productId = req.params.id;
-      const result = await productService.updateProduct(productFromUser, req.file, productId);
+      const result = await productService.updateProduct(
+        productFromUser, req.file, productId, req.user,
+      );
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {
@@ -286,7 +289,7 @@ router
   .delete('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const productId = req.params.id;
-      const result = await productService.removeProduct(productId);
+      const result = await productService.removeProduct(productId, req.user);
       const { statusCode, toReturn } = result;
       res.status(statusCode).json(toReturn);
     } catch (error) {

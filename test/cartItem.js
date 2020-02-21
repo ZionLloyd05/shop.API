@@ -27,12 +27,12 @@ describe('POST /api/v1.0/cartItems', () => {
       .post('/api/v1.0/cartItems')
       .set('Authorization', authToken)
       .send({
-        productId: 3,
+        productId: 1,
         quantity: 2,
       })
       .then((res) => {
         const { body } = res;
-        expect(res.status).to.equal(201);
+        expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
         expect(body).to.include.keys('status', 'data');
         done();

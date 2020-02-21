@@ -13,11 +13,20 @@ exports.getAllUsers = async () => {
 };
 
 exports.getUserById = async (userId) => {
-  const user = await userController.getUserById(userId);
+  const userReturn = await userController.getUserById(userId);
+
+  if (typeof userReturn === 'string') {
+    const error = userReturn;
+    const statusCode = 404;
+    return {
+      toReturn: { status: 'error', data: error },
+      statusCode,
+    };
+  }
 
   const statusCode = 200;
   const result = {
-    toReturn: { status: 'success', data: user },
+    toReturn: { status: 'success', data: userReturn },
     statusCode,
   };
   return result;
