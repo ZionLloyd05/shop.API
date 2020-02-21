@@ -63,7 +63,7 @@ exports.addToCart = async (userId, productId, quantity) => {
       };
     }
 
-    const statusCode = 201;
+    const statusCode = 200;
     return {
       toReturn: { status: 'success', data: result },
       statusCode,

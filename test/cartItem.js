@@ -11,7 +11,7 @@ describe('POST /api/v1.0/cartItems', () => {
     request(app)
       .post('/api/v1.0/auth/login')
       .send({
-        email: 'alagbaladamilola@gmail.com',
+        email: 'zionlloyd@gmail.com',
         password: 'herman123',
       })
       .then((res) => {
@@ -32,6 +32,7 @@ describe('POST /api/v1.0/cartItems', () => {
       })
       .then((res) => {
         const { body } = res;
+        console.log(body);
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
         expect(body).to.include.keys('status', 'data');

@@ -12,7 +12,7 @@ describe('GET /api/v1.0/products', () => {
     request(app)
       .post('/api/v1.0/auth/login')
       .send({
-        email: 'alagbaladamilola@gmail.com',
+        email: 'zionlloyd@gmail.com',
         password: 'herman123',
       })
       .then((res) => {
@@ -90,7 +90,7 @@ describe('POST /api/v1.0/products', () => {
     request(app)
       .post('/api/v1.0/auth/login')
       .send({
-        email: 'alagbaladamilola@gmail.com',
+        email: 'zionlloyd@gmail.com',
         password: 'herman123',
       })
       .then((res) => {
@@ -154,7 +154,7 @@ describe('PUT /api/v1.0/products/{id}', () => {
     request(app)
       .post('/api/v1.0/auth/login')
       .send({
-        email: 'alagbaladamilola@gmail.com',
+        email: 'zionlloyd@gmail.com',
         password: 'herman123',
       })
       .then((res) => {
@@ -219,7 +219,7 @@ describe('DELETE /api/v1.0/products/{id}', () => {
     request(app)
       .post('/api/v1.0/auth/login')
       .send({
-        email: 'alagbaladamilola@gmail.com',
+        email: 'zionlloyd@gmail.com',
         password: 'herman123',
       })
       .then((res) => {
