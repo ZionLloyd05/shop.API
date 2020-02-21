@@ -1,6 +1,6 @@
 # Mock Shop API
 
-## Production link <http://mockshopapi.herokuapp.com/> </h2>
+## Production link <https://mockshopapi.herokuapp.com/> </h2>
 
 ## Overview
 
@@ -30,7 +30,7 @@ A simple mock shop API built with Nodejs/Express as server, Sequelize as ORM and
 
 ## API
 
-### Check Full Docs here <http://mockshopapi.herokuapp.com/api-docs/>
+### Check Full Docs here <https://mockshopapi.herokuapp.com/api-docs/>
 
 Brief API documentation.  
 
