@@ -15,7 +15,7 @@ exports.createNewUser = async (userToCreate) => {
     lastname,
     email,
     password: hashedPassword,
-    isAdmin: false,
+    isAdmin: true,
   };
 
   const newUser = await models.User.create(newUserObj);
